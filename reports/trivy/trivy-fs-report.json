@@ -1,0 +1,548 @@
+{
+  "SchemaVersion": 2,
+  "Trivy": {
+    "Version": "0.71.2"
+  },
+  "ReportID": "01a1c152-5cb6-7808-a3b8-b9727ed2ce15",
+  "CreatedAt": "2026-11-09T14:19:22.806527329-03:00",
+  "ArtifactName": "backend",
+  "ArtifactType": "filesystem",
+  "Results": [
+    {
+      "Target": "requirements.txt",
+      "Class": "lang-pkgs",
+      "Type": "pip",
+      "Packages": [
+        {
+          "Name": "flask",
+          "Identifier": {
+            "PURL": "pkg:pypi/flask@3.0.0",
+            "UID": "2596e4e0fe81d18f"
+          },
+          "Version": "3.0.0",
+          "Locations": [
+            {
+              "StartLine": 1,
+              "EndLine": 1
+            }
+          ],
+          "AnalyzedBy": "pip"
+        },
+        {
+          "Name": "flask-cors",
+          "Identifier": {
+            "PURL": "pkg:pypi/flask-cors@4.0.0",
+            "UID": "a1752c9dcfb8a082"
+          },
+          "Version": "4.0.0",
+          "Locations": [
+            {
+              "StartLine": 2,
+              "EndLine": 2
+            }
+          ],
+          "AnalyzedBy": "pip"
+        },
+        {
+          "Name": "gunicorn",
+          "Identifier": {
+            "PURL": "pkg:pypi/gunicorn@21.2.0",
+            "UID": "a13a2b9b72557522"
+          },
+          "Version": "21.2.0",
+          "Locations": [
+            {
+              "StartLine": 4,
+              "EndLine": 4
+            }
+          ],
+          "AnalyzedBy": "pip"
+        },
+        {
+          "Name": "prometheus-client",
+          "Identifier": {
+            "PURL": "pkg:pypi/prometheus-client@0.19.0",
+            "UID": "37814126201dd69e"
+          },
+          "Version": "0.19.0",
+          "Locations": [
+            {
+              "StartLine": 5,
+              "EndLine": 5
+            }
+          ],
+          "AnalyzedBy": "pip"
+        },
+        {
+          "Name": "psycopg2-binary",
+          "Identifier": {
+            "PURL": "pkg:pypi/psycopg2-binary@2.9.10",
+            "UID": "98eea931f757378d"
+          },
+          "Version": "2.9.10",
+          "Locations": [
+            {
+              "StartLine": 3,
+              "EndLine": 3
+            }
+          ],
+          "AnalyzedBy": "pip"
+        }
+      ],
+      "Vulnerabilities": [
+        {
+          "VulnerabilityID": "CVE-2026-27205",
+          "VendorIDs": [
+            "GHSA-68rp-wp8r-4726"
+          ],
+          "PkgName": "flask",
+          "PkgIdentifier": {
+            "PURL": "pkg:pypi/flask@3.0.0",
+            "UID": "2596e4e0fe81d18f"
+          },
+          "InstalledVersion": "3.0.0",
+          "FixedVersion": "3.1.3",
+          "Status": "fixed",
+          "SeveritySource": "ghsa",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-27205",
+          "DataSource": {
+            "ID": "ghsa",
+            "Name": "GitHub Security Advisory pip",
+            "URL": "https://github.com/advisories?query=type%3Areviewed+ecosystem%3Apip"
+          },
+          "Fingerprint": "sha256:f274ff1e302131bc77cbe0f2e3049f060b30b9dc4aee6eb0e681274cc23e1575",
+          "Title": "flask: Flask: Information disclosure via improper caching of session data",
+          "Description": "Flask is a web server gateway interface (WSGI) web application framework. In versions 3.1.2 and below, when the session object is accessed, Flask should set the Vary: Cookie header., resulting in a Use of Cache Containing Sensitive Information vulnerability. The logic instructs caches not to cache the response, as it may contain information specific to a logged in user. This is handled in most cases, but some forms of access such as the Python in operator were overlooked. The severity and risk depend on the application being hosted behind a caching proxy that doesn't ignore responses with cookies, not setting a Cache-Control header to mark pages as private or non-cacheable, and accessing the session in a way that only touches keys without reading values or mutating the session. The issue has been fixed in version 3.1.3.",
+          "Severity": "LOW",
+          "CweIDs": [
+            "CWE-524"
+          ],
+          "VendorSeverity": {
+            "amazon": 2,
+            "ghsa": 1,
+            "nvd": 2,
+            "redhat": 2,
+            "ubuntu": 1
+          },
+          "CVSS": {
+            "ghsa": {
+              "V40Vector": "CVSS:4.0/AV:N/AC:L/AT:P/PR:N/UI:P/VC:L/VI:N/VA:N/SC:N/SI:N/SA:N",
+              "V40Score": 2.3
+            },
+            "nvd": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:L/I:N/A:N",
+              "V3Score": 4.3
+            },
+            "redhat": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:L/I:N/A:N",
+              "V3Score": 4.3
+            }
+          },
+          "References": [
+            "https://access.redhat.com/security/cve/CVE-2026-27205",
+            "https://github.com/pallets/flask",
+            "https://github.com/pallets/flask/commit/089cb86dd22bff589a4eafb7ab8e42dc357623b4",
+            "https://github.com/pallets/flask/releases/tag/3.1.3",
+            "https://github.com/pallets/flask/security/advisories/GHSA-68rp-wp8r-4726",
+            "https://nvd.nist.gov/vuln/detail/CVE-2026-27205",
+            "https://ubuntu.com/security/notices/USN-8104-1",
+            "https://www.cve.org/CVERecord?id=CVE-2026-27205"
+          ],
+          "PublishedDate": "2026-02-21T06:17:00.91Z",
+          "LastModifiedDate": "2026-06-17T10:26:50.7Z"
+        },
+        {
+          "VulnerabilityID": "CVE-2024-6221",
+          "VendorIDs": [
+            "GHSA-hxwh-jpp2-84pm"
+          ],
+          "PkgName": "flask-cors",
+          "PkgIdentifier": {
+            "PURL": "pkg:pypi/flask-cors@4.0.0",
+            "UID": "a1752c9dcfb8a082"
+          },
+          "InstalledVersion": "4.0.0",
+          "FixedVersion": "4.0.2",
+          "Status": "fixed",
+          "SeveritySource": "ghsa",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2024-6221",
+          "DataSource": {
+            "ID": "ghsa",
+            "Name": "GitHub Security Advisory pip",
+            "URL": "https://github.com/advisories?query=type%3Areviewed+ecosystem%3Apip"
+          },
+          "Fingerprint": "sha256:42cc55ad5e66ff6a1f9d57d866333b537cba2f2823ca4fb78036fd73b1080d71",
+          "Title": "A vulnerability in corydolphin/flask-cors version 4.0.1 allows the `Ac ...",
+          "Description": "A vulnerability in corydolphin/flask-cors version 4.0.1 allows the `Access-Control-Allow-Private-Network` CORS header to be set to true by default. This behavior can expose private network resources to unauthorized external access, leading to significant security risks such as data breaches, unauthorized access to sensitive information, and potential network intrusions.",
+          "Severity": "HIGH",
+          "CweIDs": [
+            "CWE-284"
+          ],
+          "VendorSeverity": {
+            "ghsa": 3,
+            "nvd": 3,
+            "ubuntu": 2
+          },
+          "CVSS": {
+            "ghsa": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:N/A:N",
+              "V40Vector": "CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:H/VI:N/VA:N/SC:N/SI:N/SA:N",
+              "V3Score": 7.5,
+              "V40Score": 8.7
+            },
+            "nvd": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:N/A:N",
+              "V3Score": 7.5
+            }
+          },
+          "References": [
+            "https://github.com/corydolphin/flask-cors",
+            "https://github.com/corydolphin/flask-cors/commit/03aa3f8e2256437f7bad96422a747b98ab5e31bf",
+            "https://github.com/corydolphin/flask-cors/commit/7ae310c56ac30e0b94fb42129aa377bf633256ec",
+            "https://github.com/corydolphin/flask-cors/commit/c8514760cf03fcce16d77f6db7007aad429c4548",
+            "https://github.com/corydolphin/flask-cors/issues/362",
+            "https://github.com/corydolphin/flask-cors/pull/363",
+            "https://github.com/corydolphin/flask-cors/pull/368",
+            "https://github.com/corydolphin/flask-cors/releases",
+            "https://github.com/pypa/advisory-database/tree/main/vulns/flask-cors/PYSEC-2024-260.yaml",
+            "https://github.com/pypa/advisory-database/tree/main/vulns/flask-cors/PYSEC-2024-71.yaml",
+            "https://huntr.com/bounties/a42935fc-6f57-4818-bca4-3d528235df4d",
+            "https://nvd.nist.gov/vuln/detail/CVE-2024-6221",
+            "https://ubuntu.com/security/notices/USN-7612-1",
+            "https://www.cve.org/CVERecord?id=CVE-2024-6221"
+          ],
+          "PublishedDate": "2024-08-18T19:15:04.73Z",
+          "LastModifiedDate": "2026-06-17T08:17:32.65Z"
+        },
+        {
+          "VulnerabilityID": "CVE-2024-1681",
+          "VendorIDs": [
+            "GHSA-84pr-m4jr-85g5"
+          ],
+          "PkgName": "flask-cors",
+          "PkgIdentifier": {
+            "PURL": "pkg:pypi/flask-cors@4.0.0",
+            "UID": "a1752c9dcfb8a082"
+          },
+          "InstalledVersion": "4.0.0",
+          "FixedVersion": "4.0.1",
+          "Status": "fixed",
+          "SeveritySource": "ghsa",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2024-1681",
+          "DataSource": {
+            "ID": "ghsa",
+            "Name": "GitHub Security Advisory pip",
+            "URL": "https://github.com/advisories?query=type%3Areviewed+ecosystem%3Apip"
+          },
+          "Fingerprint": "sha256:739271ef881ac41b3e6e9aee00094d85deaedd218db8ad18a2c0b7c4e013ad8b",
+          "Title": "corydolphin/flask-cors is vulnerable to log injection when the log lev ...",
+          "Description": "corydolphin/flask-cors is vulnerable to log injection when the log level is set to debug. An attacker can inject fake log entries into the log file by sending a specially crafted GET request containing a CRLF sequence in the request path. This vulnerability allows attackers to corrupt log files, potentially covering tracks of other attacks, confusing log post-processing tools, and forging log entries. The issue is due to improper output neutralization for logs.",
+          "Severity": "MEDIUM",
+          "CweIDs": [
+            "CWE-117"
+          ],
+          "VendorSeverity": {
+            "ghsa": 2,
+            "nvd": 2,
+            "ubuntu": 2
+          },
+          "CVSS": {
+            "ghsa": {
+              "V3Vector": "CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:L/A:N",
+              "V3Score": 5.3
+            },
+            "nvd": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:L/A:N",
+              "V3Score": 5.3
+            }
+          },
+          "References": [
+            "https://github.com/corydolphin/flask-cors",
+            "https://github.com/corydolphin/flask-cors/blob/40acc8092332dfed4bb54d7a4f89a6d479466de7/flask_cors/extension.py#L194",
+            "https://github.com/pypa/advisory-database/tree/main/vulns/flask-cors/PYSEC-2024-271.yaml",
+            "https://huntr.com/bounties/25a7a0ba-9fa2-4777-acb6-03e5539bb644",
+            "https://lists.debian.org/debian-lts-announce/2025/05/msg00049.html",
+            "https://nvd.nist.gov/vuln/detail/CVE-2024-1681",
+            "https://ubuntu.com/security/notices/USN-7612-1",
+            "https://www.cve.org/CVERecord?id=CVE-2024-1681"
+          ],
+          "PublishedDate": "2024-04-19T20:15:09.273Z",
+          "LastModifiedDate": "2026-06-17T07:04:46.833Z"
+        },
+        {
+          "VulnerabilityID": "CVE-2024-6839",
+          "VendorIDs": [
+            "GHSA-7rxf-gvfg-47g4"
+          ],
+          "PkgName": "flask-cors",
+          "PkgIdentifier": {
+            "PURL": "pkg:pypi/flask-cors@4.0.0",
+            "UID": "a1752c9dcfb8a082"
+          },
+          "InstalledVersion": "4.0.0",
+          "FixedVersion": "6.0.0",
+          "Status": "fixed",
+          "SeveritySource": "ghsa",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2024-6839",
+          "DataSource": {
+            "ID": "ghsa",
+            "Name": "GitHub Security Advisory pip",
+            "URL": "https://github.com/advisories?query=type%3Areviewed+ecosystem%3Apip"
+          },
+          "Fingerprint": "sha256:f78e91ea57967b5f36bd1d44d0f538cc935603aec07e00610dfdfba2fe9eb1a5",
+          "Title": "corydolphin/flask-cors version 4.0.1 contains an improper regex path m ...",
+          "Description": "corydolphin/flask-cors version 4.0.1 contains an improper regex path matching vulnerability. The plugin prioritizes longer regex patterns over more specific ones when matching paths, which can lead to less restrictive CORS policies being applied to sensitive endpoints. This mismatch in regex pattern priority allows unauthorized cross-origin access to sensitive data or functionality, potentially exposing confidential information and increasing the risk of unauthorized actions by malicious actors.",
+          "Severity": "MEDIUM",
+          "CweIDs": [
+            "CWE-41"
+          ],
+          "VendorSeverity": {
+            "ghsa": 2,
+            "nvd": 2,
+            "ubuntu": 2
+          },
+          "CVSS": {
+            "ghsa": {
+              "V3Vector": "CVSS:3.0/AV:N/AC:L/PR:N/UI:R/S:U/C:L/I:N/A:N",
+              "V3Score": 4.3
+            },
+            "nvd": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:N/A:N",
+              "V3Score": 5.3
+            }
+          },
+          "References": [
+            "https://github.com/corydolphin/flask-cors",
+            "https://github.com/corydolphin/flask-cors/blob/4.0.1/flask_cors/core.py#L73",
+            "https://github.com/corydolphin/flask-cors/commit/e970988bea563e05e8b8f53fa7bcc134b5bf5c5f",
+            "https://huntr.com/bounties/403eb1fc-86f4-4820-8eba-0f3dfae9f2b4",
+            "https://lists.debian.org/debian-lts-announce/2025/05/msg00049.html",
+            "https://nvd.nist.gov/vuln/detail/CVE-2024-6839",
+            "https://ubuntu.com/security/notices/USN-7612-1",
+            "https://www.cve.org/CVERecord?id=CVE-2024-6839"
+          ],
+          "PublishedDate": "2025-03-20T10:15:33.743Z",
+          "LastModifiedDate": "2026-06-17T08:18:48.71Z"
+        },
+        {
+          "VulnerabilityID": "CVE-2024-6844",
+          "VendorIDs": [
+            "GHSA-8vgw-p6qm-5gr7"
+          ],
+          "PkgName": "flask-cors",
+          "PkgIdentifier": {
+            "PURL": "pkg:pypi/flask-cors@4.0.0",
+            "UID": "a1752c9dcfb8a082"
+          },
+          "InstalledVersion": "4.0.0",
+          "FixedVersion": "6.0.0",
+          "Status": "fixed",
+          "SeveritySource": "ghsa",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2024-6844",
+          "DataSource": {
+            "ID": "ghsa",
+            "Name": "GitHub Security Advisory pip",
+            "URL": "https://github.com/advisories?query=type%3Areviewed+ecosystem%3Apip"
+          },
+          "Fingerprint": "sha256:b724023b595c1fba6c6fe04873efe56bdf1dbca1345cde4e3a839654488f13f9",
+          "Title": "A vulnerability in corydolphin/flask-cors version 4.0.1 allows for inc ...",
+          "Description": "A vulnerability in corydolphin/flask-cors version 4.0.1 allows for inconsistent CORS matching due to the handling of the '+' character in URL paths. The request.path is passed through the unquote_plus function, which converts the '+' character to a space ' '. This behavior leads to incorrect path normalization, causing potential mismatches in CORS configuration. As a result, endpoints may not be matched correctly to their CORS settings, leading to unexpected CORS policy application. This can cause unauthorized cross-origin access or block valid requests, creating security vulnerabilities and usability issues.",
+          "Severity": "MEDIUM",
+          "CweIDs": [
+            "CWE-346"
+          ],
+          "VendorSeverity": {
+            "ghsa": 2,
+            "ubuntu": 2
+          },
+          "CVSS": {
+            "ghsa": {
+              "V3Vector": "CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:N/A:N",
+              "V3Score": 5.3
+            }
+          },
+          "References": [
+            "https://github.com/corydolphin/flask-cors",
+            "https://github.com/corydolphin/flask-cors/blob/main/flask_cors/extension.py#L193",
+            "https://github.com/corydolphin/flask-cors/commit/35d875319621bd129a38b2b823abf4a2f6cda536",
+            "https://huntr.com/bounties/731a6cd4-d05f-4fe6-8f5b-fe088d7b34e0",
+            "https://lists.debian.org/debian-lts-announce/2025/05/msg00049.html",
+            "https://nvd.nist.gov/vuln/detail/CVE-2024-6844",
+            "https://ubuntu.com/security/notices/USN-7612-1",
+            "https://www.cve.org/CVERecord?id=CVE-2024-6844"
+          ],
+          "PublishedDate": "2025-03-20T10:15:34.12Z",
+          "LastModifiedDate": "2026-06-17T08:18:49.283Z"
+        },
+        {
+          "VulnerabilityID": "CVE-2024-6866",
+          "VendorIDs": [
+            "GHSA-43qf-4rqw-9q2g"
+          ],
+          "PkgName": "flask-cors",
+          "PkgIdentifier": {
+            "PURL": "pkg:pypi/flask-cors@4.0.0",
+            "UID": "a1752c9dcfb8a082"
+          },
+          "InstalledVersion": "4.0.0",
+          "FixedVersion": "6.0.0",
+          "Status": "fixed",
+          "SeveritySource": "ghsa",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2024-6866",
+          "DataSource": {
+            "ID": "ghsa",
+            "Name": "GitHub Security Advisory pip",
+            "URL": "https://github.com/advisories?query=type%3Areviewed+ecosystem%3Apip"
+          },
+          "Fingerprint": "sha256:459cf3fd22ef150a9523c3509e4d15fbd675eba6a6b870f80a69784dba5e73e4",
+          "Title": "corydolphin/flask-cors version 4.01 contains a vulnerability where the ...",
+          "Description": "corydolphin/flask-cors version 4.01 contains a vulnerability where the request path matching is case-insensitive due to the use of the `try_match` function, which is originally intended for matching hosts. This results in a mismatch because paths in URLs are case-sensitive, but the regex matching treats them as case-insensitive. This misconfiguration can lead to significant security vulnerabilities, allowing unauthorized origins to access paths meant to be restricted, resulting in data exposure and potential data leaks.",
+          "Severity": "MEDIUM",
+          "CweIDs": [
+            "CWE-178"
+          ],
+          "VendorSeverity": {
+            "ghsa": 2,
+            "nvd": 3,
+            "ubuntu": 2
+          },
+          "CVSS": {
+            "ghsa": {
+              "V3Vector": "CVSS:3.0/AV:N/AC:H/PR:N/UI:R/S:U/C:H/I:N/A:N",
+              "V3Score": 5.3
+            },
+            "nvd": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:N/A:N",
+              "V3Score": 7.5
+            }
+          },
+          "References": [
+            "https://github.com/corydolphin/flask-cors",
+            "https://github.com/corydolphin/flask-cors/blob/4.0.1/flask_cors/extension.py#L195",
+            "https://github.com/corydolphin/flask-cors/commit/eb39516a3c96b90d0ae5f51293972395ec3ef358",
+            "https://huntr.com/bounties/808c11af-faee-43a8-824b-b5ab4f62b9e6",
+            "https://lists.debian.org/debian-lts-announce/2025/05/msg00049.html",
+            "https://nvd.nist.gov/vuln/detail/CVE-2024-6866",
+            "https://ubuntu.com/security/notices/USN-7612-1",
+            "https://www.cve.org/CVERecord?id=CVE-2024-6866"
+          ],
+          "PublishedDate": "2025-03-20T10:15:34.62Z",
+          "LastModifiedDate": "2026-06-17T08:18:52.173Z"
+        },
+        {
+          "VulnerabilityID": "CVE-2024-1135",
+          "VendorIDs": [
+            "GHSA-w3h3-4rj7-4ph4"
+          ],
+          "PkgName": "gunicorn",
+          "PkgIdentifier": {
+            "PURL": "pkg:pypi/gunicorn@21.2.0",
+            "UID": "a13a2b9b72557522"
+          },
+          "InstalledVersion": "21.2.0",
+          "FixedVersion": "22.0.0",
+          "Status": "fixed",
+          "SeveritySource": "ghsa",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2024-1135",
+          "DataSource": {
+            "ID": "ghsa",
+            "Name": "GitHub Security Advisory pip",
+            "URL": "https://github.com/advisories?query=type%3Areviewed+ecosystem%3Apip"
+          },
+          "Fingerprint": "sha256:68886af27e09a36f26a9f33d2841c07491de5421425d689a8890a5635a8d2c64",
+          "Title": "python-gunicorn: HTTP Request Smuggling due to improper validation of Transfer-Encoding headers",
+          "Description": "Gunicorn fails to properly validate Transfer-Encoding headers, leading to HTTP Request Smuggling (HRS) vulnerabilities. By crafting requests with conflicting Transfer-Encoding headers, attackers can bypass security restrictions and access restricted endpoints. This issue is due to Gunicorn's handling of Transfer-Encoding headers, where it incorrectly processes requests with multiple, conflicting Transfer-Encoding headers, treating them as chunked regardless of the final encoding specified. This vulnerability allows for a range of attacks including cache poisoning, session manipulation, and data exposure.",
+          "Severity": "HIGH",
+          "CweIDs": [
+            "CWE-444"
+          ],
+          "VendorSeverity": {
+            "ghsa": 3,
+            "redhat": 3
+          },
+          "CVSS": {
+            "ghsa": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:H/A:N",
+              "V3Score": 8.2
+            },
+            "redhat": {
+              "V3Vector": "CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:H/A:N",
+              "V3Score": 7.5
+            }
+          },
+          "References": [
+            "https://access.redhat.com/security/cve/CVE-2024-1135",
+            "https://github.com/advisories/GHSA-w3h3-4rj7-4ph4",
+            "https://github.com/benoitc/gunicorn",
+            "https://github.com/benoitc/gunicorn/commit/ac29c9b0a758d21f1e0fb3b3457239e523fa9f1d",
+            "https://github.com/benoitc/gunicorn/issues/3091",
+            "https://github.com/benoitc/gunicorn/pull/3113",
+            "https://github.com/benoitc/gunicorn/releases/tag/22.0.0",
+            "https://huntr.com/bounties/22158e34-cfd5-41ad-97e0-a780773d96c1",
+            "https://lists.debian.org/debian-lts-announce/2024/06/msg00027.html",
+            "https://lists.debian.org/debian-lts-announce/2024/12/msg00018.html",
+            "https://nvd.nist.gov/vuln/detail/CVE-2024-1135",
+            "https://www.cve.org/CVERecord?id=CVE-2024-1135"
+          ],
+          "PublishedDate": "2024-04-16T00:15:07.797Z",
+          "LastModifiedDate": "2026-06-17T07:03:32.61Z"
+        },
+        {
+          "VulnerabilityID": "CVE-2024-6827",
+          "VendorIDs": [
+            "GHSA-hc5x-x2vx-497g"
+          ],
+          "PkgName": "gunicorn",
+          "PkgIdentifier": {
+            "PURL": "pkg:pypi/gunicorn@21.2.0",
+            "UID": "a13a2b9b72557522"
+          },
+          "InstalledVersion": "21.2.0",
+          "FixedVersion": "22.0.0",
+          "Status": "fixed",
+          "SeveritySource": "ghsa",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2024-6827",
+          "DataSource": {
+            "ID": "ghsa",
+            "Name": "GitHub Security Advisory pip",
+            "URL": "https://github.com/advisories?query=type%3Areviewed+ecosystem%3Apip"
+          },
+          "Fingerprint": "sha256:983649faefe960a4409601660cb89a96952e51fb221fc6a19a763372ee663aba",
+          "Title": "gunicorn: HTTP Request Smuggling in benoitc/gunicorn",
+          "Description": "Gunicorn version 21.2.0 does not properly validate the value of the 'Transfer-Encoding' header as specified in the RFC standards, which leads to the default fallback method of 'Content-Length,' making it vulnerable to TE.CL request smuggling. This vulnerability can lead to cache poisoning, data exposure, session manipulation, SSRF, XSS, DoS, data integrity compromise, security bypass, information leakage, and business logic abuse.",
+          "Severity": "HIGH",
+          "CweIDs": [
+            "CWE-444"
+          ],
+          "VendorSeverity": {
+            "ghsa": 3,
+            "redhat": 3
+          },
+          "CVSS": {
+            "ghsa": {
+              "V3Vector": "CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:N/A:N",
+              "V3Score": 7.5
+            },
+            "redhat": {
+              "V3Vector": "CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:N/A:N",
+              "V3Score": 7.5
+            }
+          },
+          "References": [
+            "https://access.redhat.com/security/cve/CVE-2024-6827",
+            "https://github.com/benoitc/gunicorn",
+            "https://github.com/benoitc/gunicorn/issues/3087",
+            "https://github.com/benoitc/gunicorn/issues/3278",
+            "https://github.com/benoitc/gunicorn/pull/3113",
+            "https://github.com/benoitc/gunicorn/releases/tag/22.0.0",
+            "https://huntr.com/bounties/1b4f8f38-39da-44b6-9f98-f618639d0dd7",
+            "https://nvd.nist.gov/vuln/detail/CVE-2024-6827",
+            "https://www.cve.org/CVERecord?id=CVE-2024-6827"
+          ],
+          "PublishedDate": "2025-03-20T10:15:33.357Z",
+          "LastModifiedDate": "2026-06-17T08:18:47.62Z"
+        }
+      ]
+    }
+  ]
+}

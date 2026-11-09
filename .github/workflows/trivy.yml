@@ -1,0 +1,46 @@
+name: Trivy Container Security Scan
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  trivy-scan:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout código
+        uses: actions/checkout@v4
+
+      - name: Build imagen Docker
+        run: |
+          docker build -t notes-backend:tp16 ./backend
+
+      - name: Instalar Trivy
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y wget apt-transport-https gnupg lsb-release
+          wget -qO - https://aquasecurity.github.io/trivy-repo/deb/public.key | gpg --dearmor | sudo tee /usr/share/keyrings/trivy.gpg > /dev/null
+          echo "deb [signed-by=/usr/share/keyrings/trivy.gpg] https://aquasecurity.github.io/trivy-repo/deb generic main" | sudo tee /etc/apt/sources.list.d/trivy.list
+          sudo apt-get update
+          sudo apt-get install -y trivy
+
+      - name: Escanear filesystem
+        run: |
+          trivy fs --format json \
+          -o trivy-fs-report.json \
+          ./backend
+
+      - name: Escanear imagen Docker
+        run: |
+          trivy image --format json \
+          -o trivy-image-report.json \
+          notes-backend:tp16
+
+      - name: Publicar artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: trivy-reports
+          path: |
+            trivy-fs-report.json
+            trivy-image-report.json
